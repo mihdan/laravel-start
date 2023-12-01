@@ -2,18 +2,25 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Article;
 use App\Models\User;
 use Barryvdh\Debugbar\Facades\Debugbar;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Http\Request;
+use Illuminate\Contracts\View\View;
 
 class HomeController extends Controller
 {
-    public function index() {
-        Debugbar::info('test');
+    /**
+     * @return Application|Factory|View
+     */
+    public function index(): Application|Factory|View {
 
-        $a = User::query()->inRandomOrder()->first()->value('id');
-        dd($a);
+        $articles = Article::query()
+            ->select(['id', 'title', 'thumbnail'])
+            ->paginate(9);
 
-        return view('welcome');
+        return view('home', ['articles' => $articles]);
     }
 }

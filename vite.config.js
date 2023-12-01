@@ -5,7 +5,10 @@ const host = 'localhost';
 
 export default defineConfig({
     server: {
-        host: host
+        host: '0.0.0.0',
+        hmr: {
+            host: host
+        }
     },
     plugins: [
         laravel({
