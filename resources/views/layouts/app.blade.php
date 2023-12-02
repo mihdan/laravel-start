@@ -10,9 +10,6 @@
     @include('parts.header')
     <main class="py-16 lg:py-20">
         <div class="container">
-            <h1 class="text-[26px] sm:text-xl xl:text-[48px] 2xl:text-2xl font-black">
-                Лучшие статьи
-            </h1>
             @yield('content')
         </div>
     </main>
